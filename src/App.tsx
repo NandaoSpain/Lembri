@@ -1,6 +1,5 @@
 import { Header } from "./Components/Header";
 import { TaskForm } from "./Components/TaskForm";
-import { TaskList } from "./Components/TaskList";
 
 export function App() {
 
@@ -8,7 +7,6 @@ export function App() {
     <div>
       <Header />
       <TaskForm />
-      <TaskList />
     </div>
   )
 }
