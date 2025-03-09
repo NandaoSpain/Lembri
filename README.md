@@ -1,6 +1,6 @@
 # TODO List App
 
-Una aplicación de lista de tareas (TODO List) construida con **React** y **TypeScript**, utilizando **Zod** para la validación de formularios, **useState** y **useEffect** para la gestión de estado y **Jest** para pruebas.
+Una aplicación de lista de tareas (TODO List) construida con **React** y **TypeScript**,**useState**  para la gestión de estado y **Jest** para pruebas.
 
 ## 🚀 Funcionalidades
 
@@ -15,9 +15,8 @@ Una aplicación de lista de tareas (TODO List) construida con **React** y **Type
 
 - [React](https://react.dev/) + [Vite](https://vitejs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Zod](https://zod.dev/) (Validación de formularios)
 - [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [Tailwind CSS](https://tailwindcss.com/) (Estilización)
+- [CSS Modules](https://github.com/css-modules/css-modules) (Estilización)
 
 ---
 
@@ -50,7 +49,6 @@ Una aplicación de lista de tareas (TODO List) construida con **React** y **Type
 1. Escribe una nueva tarea en el campo de entrada y presiona **Añadir**.
 2. Haz clic en la casilla de verificación para marcar/desmarcar una tarea como completada.
 3. Haz clic en el botón **Eliminar** para quitar una tarea de la lista.
-4. La barra de progreso mostrará el porcentaje de tareas completadas.
 
 ---
 
@@ -64,10 +62,8 @@ yarn test
 ```
 
 Las pruebas incluyen:
-- Renderizado de los componentes
 - Adición y eliminación de tareas
 - Marcado y desmarcado como completado
-- Actualización del progreso
 
 ---
 
@@ -77,17 +73,12 @@ Las pruebas incluyen:
 📦 todo-list-react
 ├── 📂 src
 │   ├── 📂 components
-│   │   ├── 📄 Task.tsx
-│   │   ├── 📄 TaskList.tsx
-│   │   ├── 📄 ProgressBar.tsx
+│   │   ├── 📄 Empty.tsx
+│   │   ├── 📄 Header.tsx
 │   │   └── 📄 TaskForm.tsx
-│   ├── 📂 hooks
-│   │   └── 📄 useTasks.ts
-│   ├── 📂 utils
-│   │   └── 📄 validation.ts
 │   ├── 📄 App.tsx
 │   ├── 📄 main.tsx
-│   ├── 📄 styles.css
+│   ├── 📄 global.css
 │   └── 📂 tests
 │       ├── 📄 Task.test.tsx
 │       ├── 📄 TaskList.test.tsx
