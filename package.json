@@ -1,7 +1,7 @@
 {
   "name": "lembri",
   "private": true,
-  "homepage": "./dist/index.html",
+  "homepage": "./",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
