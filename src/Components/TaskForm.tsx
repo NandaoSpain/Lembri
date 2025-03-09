@@ -1,22 +1,36 @@
 import { PlusCircle, Trash } from "phosphor-react";
 import styles from "./TaskForm.module.css";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Empty } from "./Empty";
 
 export function TaskForm() {
   const [newTaskText, setNewTaskText] = useState("");
-  const [tasks, setTasks] = useState<
-    { id: string; text: string; completed: boolean }[]
-  >([]);
+  const [tasks, setTasks] = useState<{ id: string; text: string; completed: boolean }[]
+>([]);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+    setIsFirstLoad(false);
+  }, []);
+
+  useEffect(() => {
+    if(!isFirstLoad) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks, isFirstLoad]);
 
   const handleDeleteTask = (id: string) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
   const handleToggleCompleted = (id: string) => {
-    setTasks(
-      tasks.map((task) =>
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
@@ -24,9 +38,11 @@ export function TaskForm() {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     if (newTaskText.trim() === "") return;
-    setTasks([{ id: uuidv4(), text: newTaskText, completed: false }, ...tasks]);
+
+    const newTask = { id: uuidv4(), text: newTaskText, completed: false };
+    setTasks((prevTasks) => [newTask, ...prevTasks]);
+
     setNewTaskText("");
   };
 
@@ -35,6 +51,7 @@ export function TaskForm() {
   }
 
   const completedTasks = tasks.filter((task) => task.completed).length;
+
 
   return (
     <div className={styles.main}>
